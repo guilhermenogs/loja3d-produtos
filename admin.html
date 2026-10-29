@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap" style="max-width: 720px;">
+    <header class="top" style="padding-bottom: 20px;">
+      <h1>Painel</h1>
+      <p><a href="index.html" style="color: inherit;">← Ver a loja</a></p>
+    </header>
+
+    <div class="notice" id="demo" hidden>
+      Modo demonstração: nada aqui é salvo na internet, só neste navegador.
+      Configure o GitHub em <code>config.js</code> para publicar de verdade.
+    </div>
+
+    <!-- Acesso -->
+    <section class="panel" id="login" hidden>
+      <h2>Entrar</h2>
+      <p class="help" style="margin-top:0;">
+        Cole aqui a sua chave de acesso do GitHub. Só é preciso fazer isso uma vez neste aparelho.
+        Como criar a chave: veja o passo a passo no README
+        (ou <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">crie direto aqui</a>).
+      </p>
+      <form id="form-login">
+        <div class="field">
+          <input type="password" id="chave" placeholder="github_pat_..." autocomplete="off">
+        </div>
+        <button class="btn" type="submit" id="entrar">Entrar</button>
+      </form>
+      <p id="erro-login" style="color: var(--danger);" hidden></p>
+    </section>
+
+    <!-- Painel -->
+    <div id="app" hidden>
+      <section class="panel">
+        <h2 id="form-titulo">Novo produto</h2>
+        <form id="form">
+          <div class="field">
+            <label>Fotos (até 5)</label>
+            <div class="pvs" id="pvs"></div>
+            <input type="file" id="foto" accept="image/*" multiple>
+          </div>
+          <div class="field">
+            <label for="nome">Título</label>
+            <input type="text" id="nome" required maxlength="80">
+          </div>
+          <div class="field">
+            <label for="preco">Preço (R$)</label>
+            <input type="number" id="preco" required min="0" step="0.01" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="descricao">Descrição (opcional)</label>
+            <textarea id="descricao" maxlength="600"></textarea>
+          </div>
+          <label class="check"><input type="checkbox" id="disponivel" checked> Disponível para venda</label>
+          <div class="actions">
+            <button class="btn" type="submit" id="salvar">Publicar produto</button>
+            <button class="btn ghost" type="button" id="cancelar" hidden>Cancelar edição</button>
+          </div>
+          <p class="help" id="aviso-pub" hidden>Depois de publicar, o site leva cerca de 1 minuto para mostrar a mudança.</p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Seus produtos</h2>
+        <div id="lista"></div>
+      </section>
+
+      <p style="text-align:center;"><button class="btn ghost small" id="sair">Sair deste aparelho</button></p>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
