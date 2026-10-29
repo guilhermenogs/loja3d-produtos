@@ -1,7 +1,7 @@
 // ====== CONFIGURAÇÃO DA LOJA ======
 // Edite só este arquivo para personalizar o site.
 export const CONFIG = {
-  nomeLoja: "Minha Loja 3D",
+  nomeLoja: "Guilherme Nogueira Leite - Loja 3D",
   slogan: "Peças impressas em 3D, feitas com cuidado.",
   // Opcional: link para abrir a conversa com você (não é número de telefone).
   // Ex.: "https://m.me/seu.usuario.do.facebook". Deixe "" para não mostrar o botão.
