@@ -44,7 +44,16 @@ function desenharFotos() {
       if (!f.startsWith("data:")) removidas.push(f);
       desenharFotos();
     });
-    d.append(img, x);
+    const pr = document.createElement("button");
+    pr.type = "button";
+    pr.className = "pr" + (i === 0 ? " on" : "");
+    pr.textContent = i === 0 ? "★ Principal" : "Tornar principal";
+    if (i > 0) pr.addEventListener("click", () => {
+      const [f] = fotos.splice(i, 1);
+      fotos.unshift(f);
+      desenharFotos();
+    });
+    d.append(img, x, pr);
     box.append(d);
   });
 }
