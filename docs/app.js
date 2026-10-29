@@ -12,11 +12,6 @@ $("#rodape").textContent = `© ${new Date().getFullYear()} ${CONFIG.nomeLoja}`;
 const grid = $("#grid");
 const modal = $("#modal");
 
-function linkZap(p) {
-  const msg = `Olá! Tenho interesse em: ${p.nome} (${brl(p.preco)})`;
-  return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
-}
-
 function el(tag, cls, text) {
   const e = document.createElement(tag);
   if (cls) e.className = cls;
@@ -65,16 +60,14 @@ function abrir(p) {
   $("#m-preco").textContent = brl(p.preco);
   $("#m-desc").textContent = p.descricao || "";
   $("#m-desc").hidden = !p.descricao;
-  const z = $("#m-zap");
-  if (p.disponivel === false) {
-    z.removeAttribute("href");
-    z.textContent = "Já vendido";
-    z.style.opacity = 0.5;
-  } else {
-    z.href = linkZap(p);
-    z.textContent = "Quero este · WhatsApp";
-    z.style.opacity = 1;
-  }
+  const cp = $("#m-copiar");
+  cp.dataset.texto = `${p.nome} (${brl(p.preco)})`;
+  cp.textContent = p.disponivel === false ? "Já vendido" : "Copiar nome do produto";
+  cp.disabled = p.disponivel === false;
+  $("#m-dica").hidden = p.disponivel === false;
+  const cv = $("#m-conversa");
+  cv.hidden = !CONFIG.linkConversa || p.disponivel === false;
+  if (CONFIG.linkConversa) cv.href = CONFIG.linkConversa;
   modal.showModal();
 }
 
@@ -94,3 +87,10 @@ modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); 
     grid.replaceChildren(el("p", "empty", "Não foi possível carregar os produtos agora. Tente novamente."));
   }
 })();
+
+$("#m-copiar").addEventListener("click", async (e) => {
+  const b = e.currentTarget;
+  try { await navigator.clipboard.writeText(b.dataset.texto); b.textContent = "Copiado ✓"; }
+  catch { b.textContent = b.dataset.texto; }
+  setTimeout(() => { b.textContent = "Copiar nome do produto"; }, 2000);
+});

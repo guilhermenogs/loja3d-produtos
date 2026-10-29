@@ -190,3 +190,6 @@ footer { padding: 0 0 40px; color: var(--mute); font-size: 13px; text-align: cen
 .field input[type="password"], .field input[type="text"].mono { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 11px 14px; }
 .help { color: var(--mute); font-size: 14px; }
 .help a { color: inherit; }
+
+.hint { color: var(--mute); font-size: 14px; margin: 10px 0 12px; text-align: center; }
+dialog .btn.block + .btn.block { margin-top: 8px; }
