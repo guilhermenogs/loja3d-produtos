@@ -44,16 +44,22 @@ function desenharFotos() {
       if (!f.startsWith("data:")) removidas.push(f);
       desenharFotos();
     });
-    const pr = document.createElement("button");
-    pr.type = "button";
-    pr.className = "pr" + (i === 0 ? " on" : "");
-    pr.textContent = i === 0 ? "★ Principal" : "Tornar principal";
-    if (i > 0) pr.addEventListener("click", () => {
+    const pos = document.createElement("select");
+    pos.setAttribute("aria-label", "Posição da foto");
+    fotos.forEach((_, k) => {
+      const o = document.createElement("option");
+      o.value = k;
+      o.textContent = k === 0 ? "★ Principal" : `${k + 1}ª foto`;
+      if (k === i) o.selected = true;
+      pos.append(o);
+    });
+    pos.addEventListener("change", () => {
       const [f] = fotos.splice(i, 1);
-      fotos.unshift(f);
+      fotos.splice(parseInt(pos.value, 10), 0, f);
       desenharFotos();
     });
-    d.append(img, x, pr);
+    if (i === 0) d.classList.add("main");
+    d.append(img, x, pos);
     box.append(d);
   });
 }

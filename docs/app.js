@@ -68,6 +68,7 @@ function abrir(p) {
   const cv = $("#m-conversa");
   cv.hidden = !CONFIG.linkConversa || p.disponivel === false;
   if (CONFIG.linkConversa) cv.href = CONFIG.linkConversa;
+  cp.classList.toggle("ghost", !cv.hidden);
   modal.showModal();
 }
 

@@ -23,15 +23,19 @@
 
   <dialog id="modal">
     <button class="close" id="fechar" aria-label="Fechar">✕</button>
-    <div class="ph"><img id="m-img" alt=""></div>
-    <div class="thumbs" id="m-thumbs" hidden></div>
-    <div class="body">
-      <h2 id="m-nome"></h2>
-      <div class="preco" id="m-preco"></div>
-      <p class="desc" id="m-desc"></p>
-      <button class="btn block" id="m-copiar" type="button">Copiar nome do produto</button>
+    <div class="scroll">
+      <div class="ph"><img id="m-img" alt=""></div>
+      <div class="thumbs" id="m-thumbs" hidden></div>
+      <div class="body">
+        <h2 id="m-nome"></h2>
+        <div class="preco" id="m-preco"></div>
+        <p class="desc" id="m-desc"></p>
+      </div>
+    </div>
+    <div class="acoes">
+      <a class="btn block" id="m-conversa" target="_blank" rel="noopener" hidden>Abrir conversa no Messenger</a>
+      <button class="btn ghost block" id="m-copiar" type="button">Copiar nome do produto</button>
       <p class="hint" id="m-dica">Cole o nome na nossa conversa do Marketplace para eu separar o seu.</p>
-      <a class="btn ghost block" id="m-conversa" target="_blank" rel="noopener" hidden>Abrir conversa</a>
     </div>
   </dialog>
 
